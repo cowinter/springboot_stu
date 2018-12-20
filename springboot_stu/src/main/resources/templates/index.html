@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>欢迎界面</title>
+</head>
+<body>
+<p>Hello Stupid Boy</p>
+<table width="100%" border="1" cellpadding="1">
+    <tr>
+        <td>
+            ID
+        </td>
+        <td>
+            芳名
+        </td>
+        <td>
+            标题
+        </td>
+        <td>
+            url
+        </td>
+    </tr>
+    <tr th:each="blog:${blogList}" >
+        <td th:text="${blog.id}"></td>
+        <td th:text="${blog.author}"></td>
+        <td th:text="${blog.title}"></td>
+        <td th:text="${blog.url}"></td>
+    </tr>
+</table>
+</body>
+</html>
