@@ -30,4 +30,21 @@ public class BlogController {
         mav.addObject(blogList);
         return mav;
     }
+	
+	/**
+     * 检查table
+     * @return
+     */
+    @RequestMapping(value = "/blogCheck",method = RequestMethod.GET)
+    public String CheckBlogExist(){
+        logger.info("check blog database whether exsits");
+        List<Blog> blogList = null;
+        try {
+            blogList = blogService.getBlogList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        String message = blogList.size()>0 ? "Yes" : "No";
+        return message;
+    }
 }
