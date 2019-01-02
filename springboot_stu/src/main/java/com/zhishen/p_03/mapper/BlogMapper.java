@@ -10,4 +10,6 @@ import java.util.List;
 public interface BlogMapper {
     //获取所有blog
     List<Blog> getBlogs() throws Exception;
+
+    Blog getBlogById(Long id) throws Exception;
 }
