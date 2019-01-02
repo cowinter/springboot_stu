@@ -12,4 +12,8 @@
     <select id="getBlogs" resultMap="BlogResultMap">
         SELECT ID,AUTHOR,TITLE,URL FROM BLOG
     </select>
+
+    <select id="getBlogById" resultType="com.zhishen.p_03.entity.Blog" parameterType="java.lang.Long">
+        SELECT ID,AUTHOR,TITLE,URL FROM BLOG WHERE ID = #{ID}
+    </select>
 </mapper>

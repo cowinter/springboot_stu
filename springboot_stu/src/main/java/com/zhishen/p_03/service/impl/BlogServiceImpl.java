@@ -26,7 +26,7 @@ public class BlogServiceImpl implements BlogService{
       private BlogMapper blogMapper;
 
       public List<Blog> getBlogList() {
-        logger.debug("BlogServiceImpl is running");
+        logger.debug("getBlogList is running");
         List<Blog> blogList = null;
         try {
             blogList = blogMapper.getBlogs();
@@ -36,4 +36,16 @@ public class BlogServiceImpl implements BlogService{
         }
         return blogList;
       }
+
+    @Override
+    public Blog getBlogById(Long id) {
+        logger.debug("getBlogById is running");
+        Blog blog = null;
+        try {
+            blog = blogMapper.getBlogById(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return blog;
+    }
 }

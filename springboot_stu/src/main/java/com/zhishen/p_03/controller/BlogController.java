@@ -33,8 +33,25 @@ public class BlogController {
     }
 
     @RequestMapping(value="/blogs/{id}",method = RequestMethod.GET)
-    public String getBlogById(@PathVariable("id")String id){
-        return id;
+    public Blog getBlogById(@PathVariable("id")String id){
+        Long idL = null;
+        if(!id.isEmpty() && !id.equals("")){
+            try{
+                idL = Long.parseLong(id);
+            } catch(NumberFormatException e){
+                idL = 0L;
+                e.printStackTrace();
+                logger.error("getBlogById: id format error");
+            }
+
+        }
+        Blog blog = null;
+        try {
+            blog = blogService.getBlogById(idL);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return blog;
     }
 
 	/**
