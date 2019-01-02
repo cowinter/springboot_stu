@@ -5,6 +5,7 @@ import com.zhishen.p_03.service.BlogService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,18 +20,23 @@ public class BlogController {
 
     @Autowired
     private BlogService blogService;
-    @RequestMapping(value = "/list",method = RequestMethod.GET)
-    public ModelAndView blogList() throws Exception {
+    @RequestMapping(value = "/blogs",method = RequestMethod.GET)
+    public List<Blog> blogList() throws Exception {
         logger.debug("BlogController: blogList is running");
 
-        ModelAndView mav = new ModelAndView();
+        //ModelAndView mav = new ModelAndView();
         List<Blog> blogList = null;
         blogList = blogService.getBlogList();
-        mav.setViewName("/index");
-        mav.addObject(blogList);
-        return mav;
+        //mav.setViewName("/index");
+        //mav.addObject(blogList);
+        return blogList;
     }
-	
+
+    @RequestMapping(value="/blogs/{id}",method = RequestMethod.GET)
+    public String getBlogById(@PathVariable("id")String id){
+        return id;
+    }
+
 	/**
      * 检查table
      * @return
